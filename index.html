@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lemura | Gorilla Tag Fan Game</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+
 <style>
 * {
     margin: 0;
@@ -17,16 +19,15 @@ body {
     background: url('https://i.ibb.co/GvqZHM1t/New-Project-23.png') no-repeat center center fixed;
     background-size: cover;
     color: white;
-    overflow-x: hidden;
 }
 
-.overlay {
-    position: absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background: rgba(0,0,0,0.5);
+.dark-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    top: 0;
+    left: 0;
     z-index: -1;
 }
 
@@ -49,50 +50,35 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
-.hero p {
-    margin-top: 15px;
-    font-size: 1.3rem;
-    max-width: 600px;
-    opacity: 0.9;
-}
-
 .beta {
-    margin-top: 10px;
-    font-size: 1.1rem;
+    margin-top: 15px;
     font-weight: 700;
     color: #ffcc00;
 }
 
-.cta {
-    margin-top: 30px;
-}
-
 .cta a {
-    text-decoration: none;
+    display: inline-block;
+    margin-top: 25px;
     padding: 18px 50px;
-    background: linear-gradient(90deg, #5865F2, #7289DA);
+    background: #5865F2;
     border-radius: 50px;
     font-weight: 700;
-    font-size: 1.2rem;
+    text-decoration: none;
     color: white;
     transition: 0.3s ease;
-    box-shadow: 0 0 25px rgba(114,137,218,0.5);
 }
 
 .cta a:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 40px rgba(114,137,218,0.9);
 }
 
-/* Carousel */
 .carousel {
-    position: relative;
     width: 80%;
     max-width: 900px;
     margin: 60px auto;
+    position: relative;
     overflow: hidden;
     border-radius: 20px;
-    box-shadow: 0 0 30px rgba(0,0,0,0.5);
 }
 
 .carousel-track {
@@ -100,14 +86,9 @@ body {
     transition: transform 0.5s ease;
 }
 
-.carousel-slide {
-    min-width: 100%;
-    user-select: none;
-}
-
-.carousel-slide img {
+.carousel img {
     width: 100%;
-    display: block;
+    flex-shrink: 0;
     border-radius: 20px;
 }
 
@@ -115,39 +96,35 @@ body {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.6);
     border: none;
     color: white;
     font-size: 2rem;
     padding: 10px 15px;
     cursor: pointer;
     border-radius: 50%;
-    transition: 0.3s ease;
-}
-
-.arrow:hover {
-    background: rgba(0,0,0,0.8);
 }
 
 .arrow-left { left: 10px; }
 .arrow-right { right: 10px; }
 
 .footer {
-    padding: 30px;
     text-align: center;
-    font-size: 0.9rem;
+    padding: 30px;
     opacity: 0.6;
 }
 </style>
 </head>
 <body>
-<div class="overlay"></div>
+
+<div class="dark-overlay"></div>
 
 <section class="hero">
     <h1>LEMURA</h1>
-    <p>The ultimate Gorilla Tag fan experience. Swing, climb, and outplay your friends in a wild jungle arena.</p>
-    <div class="beta">Currently in Beta – Full Release Late April</div>
-    
+    <div class="beta">
+        Currently in Beta – Full Release Late April
+    </div>
+
     <div class="cta">
         <a href="https://discord.gg/zpX2AGCJmt" target="_blank">
             Join the Discord
@@ -155,40 +132,40 @@ body {
     </div>
 </section>
 
-<!-- Carousel -->
 <section class="carousel">
     <button class="arrow arrow-left">&#10094;</button>
-    <div class="carousel-track">
-        <div class="carousel-slide"><img src="IMAGE_1_URL" alt="Screenshot 1"></div>
-        <div class="carousel-slide"><img src="IMAGE_2_URL" alt="Screenshot 2"></div>
-        <div class="carousel-slide"><img src="IMAGE_3_URL" alt="Screenshot 3"></div>
+    <div class="carousel-track" id="carouselTrack">
+        <!-- ADD OR REMOVE IMAGES HERE -->
+        <img src="https://i.ibb.co/XZjCZPk6/New-Project-21.png">
+        <img src="https://i.ibb.co/hxSZV9Xs/New-Project-18.png">
+        <img src="https://i.ibb.co/Pv0z6Z3J/New-Project-17.png">
     </div>
     <button class="arrow arrow-right">&#10095;</button>
 </section>
 
 <div class="footer">
-    © 2026 Lemura. Fan-made project. Not affiliated with Gorilla Tag.
+    © 2026 Lemura. Fan-made project.
 </div>
 
 <script>
-// Carousel JS
-const track = document.querySelector('.carousel-track');
-const slides = Array.from(track.children);
-const nextButton = document.querySelector('.arrow-right');
-const prevButton = document.querySelector('.arrow-left');
-let currentIndex = 0;
+const track = document.getElementById("carouselTrack");
+const slides = track.querySelectorAll("img");
+const nextBtn = document.querySelector(".arrow-right");
+const prevBtn = document.querySelector(".arrow-left");
+
+let index = 0;
 
 function updateCarousel() {
-    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    track.style.transform = `translateX(-${index * 100}%)`;
 }
 
-nextButton.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % slides.length;
+nextBtn.addEventListener("click", () => {
+    index = (index + 1) % slides.length;
     updateCarousel();
 });
 
-prevButton.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+prevBtn.addEventListener("click", () => {
+    index = (index - 1 + slides.length) % slides.length;
     updateCarousel();
 });
 </script>
