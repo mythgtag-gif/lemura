@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lemura | Gorilla Tag Fan Game</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-
 <style>
 * {
     margin: 0;
@@ -14,13 +12,11 @@
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
 }
-
 body {
     background: url('https://i.ibb.co/GvqZHM1t/New-Project-23.png') no-repeat center center fixed;
     background-size: cover;
     color: white;
 }
-
 .dark-overlay {
     position: fixed;
     width: 100%;
@@ -30,7 +26,6 @@ body {
     left: 0;
     z-index: -1;
 }
-
 .hero {
     height: 100vh;
     display: flex;
@@ -40,7 +35,6 @@ body {
     text-align: center;
     padding: 20px;
 }
-
 .hero h1 {
     font-size: 5rem;
     font-weight: 900;
@@ -49,13 +43,17 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-
 .beta {
     margin-top: 15px;
     font-weight: 700;
     color: #ffcc00;
 }
-
+.cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
 .cta a {
     display: inline-block;
     margin-top: 25px;
@@ -67,11 +65,13 @@ body {
     color: white;
     transition: 0.3s ease;
 }
-
+.cta a.meta-btn {
+    background: #0082FB;
+    margin-top: 0;
+}
 .cta a:hover {
     transform: scale(1.05);
 }
-
 .carousel {
     width: 80%;
     max-width: 900px;
@@ -80,18 +80,15 @@ body {
     overflow: hidden;
     border-radius: 20px;
 }
-
 .carousel-track {
     display: flex;
     transition: transform 0.5s ease;
 }
-
 .carousel img {
     width: 100%;
     flex-shrink: 0;
     border-radius: 20px;
 }
-
 .arrow {
     position: absolute;
     top: 50%;
@@ -104,10 +101,8 @@ body {
     cursor: pointer;
     border-radius: 50%;
 }
-
 .arrow-left { left: 10px; }
 .arrow-right { right: 10px; }
-
 .footer {
     text-align: center;
     padding: 30px;
@@ -116,59 +111,50 @@ body {
 </style>
 </head>
 <body>
-
 <div class="dark-overlay"></div>
-
 <section class="hero">
     <h1>LEMURA</h1>
     <div class="beta">
         Currently in Beta – Full Release Late April
     </div>
-
     <div class="cta">
         <a href="https://discord.gg/zpX2AGCJmt" target="_blank">
             Join the Discord
         </a>
+        <a href="https://www.meta.com/en-gb/experiences/lemura/24339402999012985/?require_login=true" target="_blank" class="meta-btn">
+            Meta Page
+        </a>
     </div>
 </section>
-
 <section class="carousel">
     <button class="arrow arrow-left">&#10094;</button>
     <div class="carousel-track" id="carouselTrack">
-        <!-- ADD OR REMOVE IMAGES HERE -->
         <img src="https://i.ibb.co/XZjCZPk6/New-Project-21.png">
         <img src="https://i.ibb.co/hxSZV9Xs/New-Project-18.png">
         <img src="https://i.ibb.co/Pv0z6Z3J/New-Project-17.png">
     </div>
     <button class="arrow arrow-right">&#10095;</button>
 </section>
-
 <div class="footer">
     © 2026 Lemura. Fan-made project.
 </div>
-
 <script>
 const track = document.getElementById("carouselTrack");
 const slides = track.querySelectorAll("img");
 const nextBtn = document.querySelector(".arrow-right");
 const prevBtn = document.querySelector(".arrow-left");
-
 let index = 0;
-
 function updateCarousel() {
     track.style.transform = `translateX(-${index * 100}%)`;
 }
-
 nextBtn.addEventListener("click", () => {
     index = (index + 1) % slides.length;
     updateCarousel();
 });
-
 prevBtn.addEventListener("click", () => {
     index = (index - 1 + slides.length) % slides.length;
     updateCarousel();
 });
 </script>
-
 </body>
 </html>
