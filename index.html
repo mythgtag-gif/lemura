@@ -6,155 +6,407 @@
 <title>Lemura | Gorilla Tag Fan Game</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
 body {
     background: url('https://i.ibb.co/GvqZHM1t/New-Project-23.png') no-repeat center center fixed;
     background-size: cover;
     color: white;
 }
 .dark-overlay {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.6);
-    top: 0;
-    left: 0;
-    z-index: -1;
+    position: fixed; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6); top: 0; left: 0; z-index: -1;
 }
+
+/* NAV */
+nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(0,0,0,0.5); backdrop-filter: blur(10px);
+    display: flex; justify-content: center; gap: 30px; padding: 15px;
+}
+nav a {
+    color: white; text-decoration: none; font-weight: 700;
+    font-size: 0.85rem; letter-spacing: 1px; opacity: 0.8;
+    transition: opacity 0.2s;
+}
+nav a:hover { opacity: 1; }
+
+/* HERO */
 .hero {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
+    height: 100vh; display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center; padding: 20px;
 }
 .hero h1 {
-    font-size: 5rem;
-    font-weight: 900;
-    letter-spacing: 5px;
+    font-size: 5rem; font-weight: 900; letter-spacing: 5px;
     background: linear-gradient(90deg, #6aff7d, #00ffcc);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
-.beta {
-    margin-top: 15px;
-    font-weight: 700;
-    color: #ffcc00;
-}
-.cta {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-}
+.beta { margin-top: 15px; font-weight: 700; color: #ffcc00; }
+.cta { display: flex; flex-direction: column; align-items: center; gap: 15px; }
 .cta a {
-    display: inline-block;
-    margin-top: 25px;
-    padding: 18px 50px;
-    background: #5865F2;
-    border-radius: 50px;
-    font-weight: 700;
-    text-decoration: none;
-    color: white;
-    transition: 0.3s ease;
+    display: inline-block; margin-top: 25px; padding: 18px 50px;
+    background: #5865F2; border-radius: 50px; font-weight: 700;
+    text-decoration: none; color: white; transition: 0.3s ease;
 }
-.cta a.meta-btn {
-    background: #0082FB;
-    margin-top: 0;
+.cta a.meta-btn { background: #0082FB; margin-top: 0; }
+.cta a:hover { transform: scale(1.05); }
+
+/* STATS BAR */
+.stats-bar {
+    display: flex; justify-content: center; gap: 60px;
+    padding: 30px 20px; background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(6px); flex-wrap: wrap;
 }
-.cta a:hover {
-    transform: scale(1.05);
+.stat { text-align: center; }
+.stat .number {
+    font-size: 2.5rem; font-weight: 900;
+    background: linear-gradient(90deg, #6aff7d, #00ffcc);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
+.stat .label { font-size: 0.8rem; opacity: 0.7; letter-spacing: 1px; margin-top: 4px; }
+
+/* SECTIONS */
+section.content-section {
+    max-width: 900px; margin: 80px auto; padding: 0 20px;
+}
+.section-title {
+    font-size: 2rem; font-weight: 900; letter-spacing: 3px;
+    background: linear-gradient(90deg, #6aff7d, #00ffcc);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 30px; text-align: center;
+}
+.glass-box {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px; padding: 30px;
+    backdrop-filter: blur(8px);
+}
+.about-text { line-height: 1.9; opacity: 0.9; font-size: 1rem; }
+
+/* FEATURES */
+.features-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+.feature-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px; padding: 25px;
+    backdrop-filter: blur(8px); text-align: center;
+    transition: transform 0.3s, border-color 0.3s;
+}
+.feature-card:hover { transform: translateY(-5px); border-color: #6aff7d55; }
+.feature-icon { font-size: 2.5rem; margin-bottom: 12px; }
+.feature-title { font-weight: 700; margin-bottom: 8px; font-size: 1rem; }
+.feature-desc { opacity: 0.7; font-size: 0.85rem; line-height: 1.6; }
+
+/* INSTALL */
+.install-steps { display: flex; flex-direction: column; gap: 15px; }
+.step {
+    display: flex; align-items: flex-start; gap: 20px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px; padding: 20px;
+}
+.step-num {
+    min-width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(135deg, #6aff7d, #00ffcc);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; color: #000; font-size: 1rem;
+}
+.step-text { line-height: 1.6; opacity: 0.9; font-size: 0.95rem; }
+.step-text strong { color: #6aff7d; display: block; margin-bottom: 4px; }
+.step-text a { color: #00ffcc; }
+
+/* CREDITS */
+.credits-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+}
+.credit-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px; padding: 22px; text-align: center;
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s;
+}
+.credit-card:hover { transform: translateY(-4px); }
+.credit-avatar {
+    width: 60px; height: 60px; border-radius: 50%;
+    margin: 0 auto 12px; background: linear-gradient(135deg, #6aff7d, #00ffcc);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; font-weight: 900; color: #000;
+}
+.credit-name { font-weight: 700; margin-bottom: 5px; }
+.credit-role { opacity: 0.6; font-size: 0.8rem; letter-spacing: 1px; }
+
+/* DISCORD WIDGET */
+.discord-section { text-align: center; }
+.discord-widget-wrap { display: flex; justify-content: center; margin-top: 10px; }
+.discord-widget-wrap iframe { border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); }
+
+/* CAROUSEL */
 .carousel {
-    width: 80%;
-    max-width: 900px;
-    margin: 60px auto;
-    position: relative;
-    overflow: hidden;
-    border-radius: 20px;
+    width: 80%; max-width: 900px; margin: 60px auto;
+    position: relative; overflow: hidden; border-radius: 20px;
 }
-.carousel-track {
-    display: flex;
-    transition: transform 0.5s ease;
-}
-.carousel img {
-    width: 100%;
-    flex-shrink: 0;
-    border-radius: 20px;
-}
+.carousel-track { display: flex; transition: transform 0.5s ease; }
+.carousel img { width: 100%; flex-shrink: 0; border-radius: 20px; }
 .arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0,0,0,0.6);
-    border: none;
-    color: white;
-    font-size: 2rem;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 50%;
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(0,0,0,0.6); border: none; color: white;
+    font-size: 2rem; padding: 10px 15px; cursor: pointer; border-radius: 50%;
 }
 .arrow-left { left: 10px; }
 .arrow-right { right: 10px; }
-.footer {
-    text-align: center;
-    padding: 30px;
-    opacity: 0.6;
-}
+
+/* FOOTER */
+.footer { text-align: center; padding: 40px; opacity: 0.5; font-size: 0.85rem; }
+
+/* SCROLL FADE */
+.fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body>
 <div class="dark-overlay"></div>
-<section class="hero">
-    <h1>LEMURA</h1>
-    <div class="beta">
-        Currently in Beta – Full Release Late April
-    </div>
-    <div class="cta">
-        <a href="https://discord.gg/zpX2AGCJmt" target="_blank">
-            Join the Discord
-        </a>
-        <a href="https://www.meta.com/en-gb/experiences/lemura/24339402999012985/?require_login=true" target="_blank" class="meta-btn">
-            Meta Page
-        </a>
-    </div>
-</section>
-<section class="carousel">
-    <button class="arrow arrow-left">&#10094;</button>
-    <div class="carousel-track" id="carouselTrack">
-        <img src="https://i.ibb.co/XZjCZPk6/New-Project-21.png">
-        <img src="https://i.ibb.co/hxSZV9Xs/New-Project-18.png">
-        <img src="https://i.ibb.co/Pv0z6Z3J/New-Project-17.png">
-    </div>
-    <button class="arrow arrow-right">&#10095;</button>
-</section>
-<div class="footer">
-    © 2026 Lemura. Fan-made project.
-</div>
+
 <script>
-const track = document.getElementById("carouselTrack");
-const slides = track.querySelectorAll("img");
-const nextBtn = document.querySelector(".arrow-right");
-const prevBtn = document.querySelector(".arrow-left");
-let index = 0;
-function updateCarousel() {
-    track.style.transform = `translateX(-${index * 100}%)`;
-}
-nextBtn.addEventListener("click", () => {
-    index = (index + 1) % slides.length;
-    updateCarousel();
-});
-prevBtn.addEventListener("click", () => {
-    index = (index - 1 + slides.length) % slides.length;
-    updateCarousel();
+// ============================================================
+//  LEMURA SITE CONFIG — EDIT EVERYTHING HERE
+// ============================================================
+const CONFIG = {
+
+  // --- HERO ---
+  title: "LEMURA",
+  betaText: "Currently in Beta – Full Release Late April",
+  discordLink: "https://discord.gg/zpX2AGCJmt",
+  metaLink: "https://www.meta.com/en-gb/experiences/lemura/24339402999012985/?require_login=true",
+
+  // --- STATS BAR ---
+  stats: [
+    { number: "10+", label: "PLAYERS" },
+    { number: "BETA", label: "2.4" },
+    { number: "APR 2026", label: "FULL RELEASE" },
+  ],
+
+  // --- ABOUT ---
+  about: `Lemura is a fan-made Gorilla Tag-inspired VR game built from the ground up in Unity. 
+Set in an atmospheric urban liminal world, Lemura takes the core movement you love and wraps it 
+in a completely new environment. Explore abandoned rooftops, foggy underpasses, and surreal cityscapes 
+while chasing — or being chased. This is Gorilla Tag, but darker.`,
+
+  // --- FEATURES ---
+  features: [
+    { icon: "🏙️", title: "Liminal Urban World", desc: "Explore a hand-crafted city environment dripping with atmosphere." },
+    { icon: "🦍", title: "Gorilla Tag Movement", desc: "The physics-based movement you know and love, refined and expanded." },
+    { icon: "🎮", title: "Full VR Support", desc: "Built natively for Meta Quest with smooth performance." },
+    { icon: "🌙", title: "Atmospheric Lighting", desc: "Dynamic lighting and fog systems that make every match feel cinematic." },
+    { icon: "⚡", title: "Active Development", desc: "Regular updates, community-driven features, and growing content." },
+    { icon: "🎵", title: "Original Soundtrack", desc: "A custom ambient soundtrack designed to match the liminal vibe." },
+  ],
+
+  // --- HOW TO INSTALL ---
+  installSteps: [
+    {
+      title: "Join the Discord",
+      desc: 'Head to our <a href="https://discord.gg/zpX2AGCJmt" target="_blank">Discord server</a> to get access to the latest build and announcements.'
+    },
+    {
+      title: "Apply For Beta Tester",
+      desc: 'Head to our <a href="https://discord.gg/zpX2AGCJmt" target="_blank">Discord server</a> to apply.'
+    },
+    {
+      title: "Get the APK",
+      desc: "Download the latest Lemura APK from the #releases channel in our Discord."
+    },
+    {
+      title: "Enable Developer Mode",
+      desc: 'Enable Developer Mode on your Meta Quest headset via the <a href="https://developer.oculus.com/" target="_blank">Meta Developer Dashboard</a>.'
+    },
+    {
+      title: "Sideload via SideQuest",
+      desc: 'Use <a href="https://sidequestvr.com/" target="_blank">SideQuest</a> or ADB to install the APK onto your headset.'
+    },
+    {
+      title: "Launch & Play",
+      desc: "Find Lemura in your Unknown Sources library, launch it, and jump in!"
+    },
+  ],
+
+  // --- CREDITS ---
+  credits: [
+    { initials: "MY", name: "Myth",     role: "Lead Developer" },
+    { initials: "??", name: "(also) Myth",      role: "Map Design" },
+    { initials: "??", name: "Myth (again)",      role: "Sound Design" },
+    { initials: "??", name: "Nol",      role: "Community Manager" },
+  ],
+
+  // --- DISCORD WIDGET ---
+  // Get your server ID from Discord: Server Settings > Widget > Enable Widget
+  discordServerId: "1472640916454903838",
+
+  // --- CAROUSEL IMAGES ---
+  carouselImages: [
+    "https://i.ibb.co/XZjCZPk6/New-Project-21.png",
+    "https://i.ibb.co/hxSZV9Xs/New-Project-18.png",
+    "https://i.ibb.co/Pv0z6Z3J/New-Project-17.png",
+  ],
+
+  // --- FOOTER ---
+  footerText: "© 2026 Lemura. Fan-made project. Not affiliated with Another Axiom.",
+};
+// ============================================================
+//  END CONFIG
+// ============================================================
+
+
+// Build the page from config
+document.addEventListener("DOMContentLoaded", () => {
+
+  document.title = `${CONFIG.title} | Gorilla Tag Fan Game`;
+
+  // NAV
+  document.querySelector("nav").innerHTML = `
+    <a href="#about">About</a>
+    <a href="#features">Features</a>
+    <a href="#install">Install</a>
+    <a href="#credits">Credits</a>
+    <a href="#community">Community</a>
+  `;
+
+  // HERO
+  document.querySelector(".hero h1").textContent = CONFIG.title;
+  document.querySelector(".beta").textContent = CONFIG.betaText;
+  document.querySelector(".discord-btn").href = CONFIG.discordLink;
+  document.querySelector(".meta-btn").href = CONFIG.metaLink;
+
+  // STATS
+  const statsBar = document.querySelector(".stats-bar");
+  statsBar.innerHTML = CONFIG.stats.map(s => `
+    <div class="stat">
+      <div class="number">${s.number}</div>
+      <div class="label">${s.label}</div>
+    </div>
+  `).join("");
+
+  // ABOUT
+  document.querySelector(".about-text").textContent = CONFIG.about;
+
+  // FEATURES
+  document.querySelector(".features-grid").innerHTML = CONFIG.features.map(f => `
+    <div class="feature-card">
+      <div class="feature-icon">${f.icon}</div>
+      <div class="feature-title">${f.title}</div>
+      <div class="feature-desc">${f.desc}</div>
+    </div>
+  `).join("");
+
+  // INSTALL
+  document.querySelector(".install-steps").innerHTML = CONFIG.installSteps.map((s, i) => `
+    <div class="step">
+      <div class="step-num">${i + 1}</div>
+      <div class="step-text"><strong>${s.title}</strong>${s.desc}</div>
+    </div>
+  `).join("");
+
+  // CREDITS
+  document.querySelector(".credits-grid").innerHTML = CONFIG.credits.map(c => `
+    <div class="credit-card">
+      <div class="credit-avatar">${c.initials}</div>
+      <div class="credit-name">${c.name}</div>
+      <div class="credit-role">${c.role}</div>
+    </div>
+  `).join("");
+
+  // DISCORD WIDGET
+  const widgetWrap = document.querySelector(".discord-widget-wrap");
+  if (CONFIG.discordServerId && CONFIG.discordServerId !== "YOUR_SERVER_ID_HERE") {
+    widgetWrap.innerHTML = `
+      <iframe src="https://discord.com/widget?id=${CONFIG.discordServerId}&theme=dark"
+        width="350" height="500" allowtransparency="true" frameborder="0"
+        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+      </iframe>`;
+  } else {
+    widgetWrap.innerHTML = `<p style="opacity:0.5;font-size:0.85rem;">Add your Discord Server ID to CONFIG.discordServerId to enable the live widget.</p>`;
+  }
+
+  // CAROUSEL
+  const track = document.getElementById("carouselTrack");
+  track.innerHTML = CONFIG.carouselImages.map(src => `<img src="${src}">`).join("");
+  const slides = track.querySelectorAll("img");
+  let index = 0;
+  function updateCarousel() { track.style.transform = `translateX(-${index * 100}%)`; }
+  document.querySelector(".arrow-right").addEventListener("click", () => { index = (index + 1) % slides.length; updateCarousel(); });
+  document.querySelector(".arrow-left").addEventListener("click", () => { index = (index - 1 + slides.length) % slides.length; updateCarousel(); });
+
+  // FOOTER
+  document.querySelector(".footer").textContent = CONFIG.footerText;
+
+  // SCROLL FADE
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
 });
 </script>
+
+<!-- NAV -->
+<nav></nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1></h1>
+  <div class="beta"></div>
+  <div class="cta">
+    <a href="#" class="discord-btn">Join the Discord</a>
+    <a href="#" class="meta-btn">Meta Page</a>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar fade-in"></div>
+
+<!-- ABOUT -->
+<section class="content-section fade-in" id="about">
+  <div class="section-title">WHAT IS LEMURA?</div>
+  <div class="glass-box">
+    <p class="about-text"></p>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="content-section fade-in" id="features">
+  <div class="section-title">FEATURES</div>
+  <div class="features-grid"></div>
+</section>
+
+<!-- CAROUSEL -->
+<section class="carousel fade-in">
+  <button class="arrow arrow-left">&#10094;</button>
+  <div class="carousel-track" id="carouselTrack"></div>
+  <button class="arrow arrow-right">&#10095;</button>
+</section>
+
+<!-- HOW TO INSTALL -->
+<section class="content-section fade-in" id="install">
+  <div class="section-title">HOW TO INSTALL</div>
+  <div class="install-steps"></div>
+</section>
+
+<!-- CREDITS -->
+<section class="content-section fade-in" id="credits">
+  <div class="section-title">CREDITS</div>
+  <div class="credits-grid"></div>
+</section>
+
+<!-- COMMUNITY / DISCORD WIDGET -->
+<section class="content-section discord-section fade-in" id="community">
+  <div class="section-title">COMMUNITY</div>
+  <div class="discord-widget-wrap"></div>
+</section>
+
+<div class="footer"></div>
+
 </body>
 </html>
